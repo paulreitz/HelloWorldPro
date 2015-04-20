@@ -43,7 +43,7 @@ public class HelloView implements IViewRenderer
 
 	public void render()
 	{
-		
+		System.out.println(messageVO.getMessage());
 	}
 
 }
