@@ -83,6 +83,36 @@ public class ViewList
 		return tail.getData();
 	}
 	
+	public boolean contains(IViewRenderer item)
+	{
+		ViewVO tail = head.getChild();
+		while (tail != null)
+		{
+			if (tail.getData() == item)
+			{
+				return true;
+			}
+			tail = tail.getChild();
+		}
+		return false;
+	}
+	
+	public int indexOf(IViewRenderer item)
+	{
+		int index = -1;
+		ViewVO tail = head.getChild();
+		while(tail != null)
+		{
+			index++;
+			if (tail.getData() == item)
+			{
+				return index;
+			}
+			tail = tail.getChild();
+		}
+		return -1;
+	}
+	
 	class ViewVO
 	{
 		private IViewRenderer data;
