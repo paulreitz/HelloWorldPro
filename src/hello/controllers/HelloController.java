@@ -3,8 +3,6 @@ package hello.controllers;
 import hello.core.ViewList;
 import hello.views.IViewRenderer;
 
-import java.util.ArrayList;
-
 public class HelloController
 {
 	private static HelloController _instance;
