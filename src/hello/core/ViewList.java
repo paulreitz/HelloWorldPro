@@ -11,13 +11,21 @@ import hello.views.IViewRenderer;
  */
 public class ViewList
 {
+	// the top level node of the list.
 	private ViewVO head;
 	
+	/**
+	 * Constructor
+	 */
 	public ViewList()
 	{
 		head = new ViewVO();
 	}
 	
+	/**
+	 * The number of view renderers in the list.
+	 * @return
+	 */
 	public int size()
 	{
 		int count = 0;
@@ -30,6 +38,11 @@ public class ViewList
 		return count;
 	}
 	
+	/**
+	 * Adds an view render to the list at index 0.
+	 * 
+	 * @param item
+	 */
 	public void shift(IViewRenderer item)
 	{
 		ViewVO inserted = new ViewVO();
@@ -38,6 +51,11 @@ public class ViewList
 		head.setChild(inserted);
 	}
 	
+	/**
+	 * Removes the view renderer at index 0 and returns it.
+	 * 
+	 * @return
+	 */
 	public IViewRenderer unshift()
 	{
 		ViewVO unshifted = head.getChild();
@@ -45,6 +63,11 @@ public class ViewList
 		return unshifted.getData();
 	}
 	
+	/**
+	 * Removes the view renderer at the end of the list and returns it
+	 * 
+	 * @return
+	 */
 	public IViewRenderer pop()
 	{
 		ViewVO parent = head;
@@ -58,6 +81,11 @@ public class ViewList
 		return tail.getData();
 	}
 	
+	/**
+	 * Adds a view renderer to the end of the list.
+	 * 
+	 * @param item
+	 */
 	public void add(IViewRenderer item)
 	{
 		ViewVO tail = head;
@@ -70,6 +98,12 @@ public class ViewList
 		tail.setChild(next);
 	}
 	
+	/**
+	 * Returns the view renderer at the specified index.
+	 * 
+	 * @param index
+	 * @return	
+	 */
 	public IViewRenderer get(int index)
 	{
 		ViewVO tail = head;
@@ -83,6 +117,12 @@ public class ViewList
 		return tail.getData();
 	}
 	
+	/**
+	 * Checks to see if a view renderer is contained in the list
+	 * 
+	 * @param item
+	 * @return	true if the specified view renderer is found in the list, false otherwise.
+	 */
 	public boolean contains(IViewRenderer item)
 	{
 		ViewVO tail = head.getChild();
@@ -97,6 +137,12 @@ public class ViewList
 		return false;
 	}
 	
+	/**
+	 * Returns the index of the first instance of the specified view renderer
+	 * 
+	 * @param item
+	 * @return The first index of the given view renderer or -1.
+	 */
 	public int indexOf(IViewRenderer item)
 	{
 		int index = -1;
@@ -115,7 +161,9 @@ public class ViewList
 	
 	class ViewVO
 	{
+		// holds a reference to a view renderer
 		private IViewRenderer data;
+		// A reference to the next node in the list
 		private ViewVO child;
 		
 		public ViewVO()
@@ -124,26 +172,50 @@ public class ViewList
 			child = null;
 		}
 
+		/**
+		 * The view renderer referenced by this node.
+		 * @return
+		 */
 		public IViewRenderer getData()
 		{
 			return data;
 		}
 
+		/**
+		 * Sets the view renderer this node references
+		 * 
+		 * @param data
+		 */
 		public void setData(IViewRenderer data)
 		{
 			this.data = data;
 		}
 
+		/**
+		 * The next node in the list
+		 * 
+		 * @return
+		 */
 		public ViewVO getChild()
 		{
 			return child;
 		}
 
+		/**
+		 * Sets the next node in the list
+		 * 
+		 * @param child
+		 */
 		public void setChild(ViewVO child)
 		{
 			this.child = child;
 		}
 		
+		/**
+		 * Returns whether or not this node contains a reference to another node.
+		 * 
+		 * @return
+		 */
 		public boolean hasChild()
 		{
 			return !(child == null);

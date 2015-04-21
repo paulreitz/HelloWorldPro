@@ -4,6 +4,12 @@ import hello.controllers.HelloController;
 import hello.core.HelloConstants;
 import hello.views.HelloView;
 
+/**
+ * Launches the Hello World app.
+ * 
+ * @author Paul Reitz
+ *
+ */
 public class Program
 {
 

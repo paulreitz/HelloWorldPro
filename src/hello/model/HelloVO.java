@@ -8,6 +8,7 @@ package hello.model;
  */
 public class HelloVO extends MessageBase
 {
+	// A single message that will be displayed to the output.
 	private String message;
 	
 	{
@@ -15,21 +16,39 @@ public class HelloVO extends MessageBase
 		ariaLabel = "hello_world";
 	}
 	
+	/**
+	 * Constructor
+	 */
 	public HelloVO()
 	{
 		
 	}
 	
+	/**
+	 * Constructor
+	 * 
+	 * @param value	Initial message
+	 */
 	public HelloVO(String value)
 	{
 		message = value;
 	}
 
+	/**
+	 * The message
+	 * 
+	 * @return
+	 */
 	public String getMessage()
 	{
 		return message;
 	}
 
+	/**
+	 * Sets the message
+	 * 
+	 * @param message
+	 */
 	public void setMessage(String message)
 	{
 		this.message = message;
