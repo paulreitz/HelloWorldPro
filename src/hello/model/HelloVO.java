@@ -10,6 +10,10 @@ public class HelloVO extends MessageBase
 {
 	private String message;
 	
+	{
+		ariaReadOnly = true;
+	}
+	
 	public HelloVO()
 	{
 		
