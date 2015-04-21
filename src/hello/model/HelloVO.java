@@ -12,6 +12,7 @@ public class HelloVO extends MessageBase
 	
 	{
 		ariaReadOnly = true;
+		ariaLabel = "hello_world";
 	}
 	
 	public HelloVO()
