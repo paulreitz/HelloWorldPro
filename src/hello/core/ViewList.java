@@ -6,25 +6,56 @@ import hello.views.IViewRenderer;
  * Custom list class to hold IViewRenderers. Because if you're going to over complicate 
  * Hello World, go big or go home!
  * 
- * TODO: implement shift(), unshift(), pop(), splice() etc.
- * 
  * @author Paul Reitz
  *
  */
 public class ViewList
 {
 	private ViewVO head;
-	private int count;
 	
 	public ViewList()
 	{
 		head = new ViewVO();
-		count = 0;
 	}
 	
 	public int size()
 	{
+		int count = 0;
+		ViewVO tail = head;
+		while(tail.hasChild())
+		{
+			tail = tail.getChild();
+			count++;
+		}
 		return count;
+	}
+	
+	public void shift(IViewRenderer item)
+	{
+		ViewVO inserted = new ViewVO();
+		inserted.setData(item);
+		inserted.setChild(head.getChild());
+		head.setChild(inserted);
+	}
+	
+	public IViewRenderer unshift()
+	{
+		ViewVO unshifted = head.getChild();
+		head.setChild(unshifted.getChild());
+		return unshifted.getData();
+	}
+	
+	public IViewRenderer pop()
+	{
+		ViewVO parent = head;
+		ViewVO tail = head.getChild();
+		while(tail.hasChild())
+		{
+			parent = tail;
+			tail = tail.getChild();
+		}
+		parent.setChild(null);
+		return tail.getData();
 	}
 	
 	public void add(IViewRenderer item)
@@ -37,7 +68,6 @@ public class ViewList
 		ViewVO next = new ViewVO();
 		next.setData(item);
 		tail.setChild(next);
-		count++;
 	}
 	
 	public IViewRenderer get(int index)
