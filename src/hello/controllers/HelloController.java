@@ -1,5 +1,6 @@
 package hello.controllers;
 
+import hello.core.ViewList;
 import hello.views.IViewRenderer;
 
 import java.util.ArrayList;
@@ -8,11 +9,11 @@ public class HelloController
 {
 	private static HelloController _instance;
 	
-	private ArrayList<IViewRenderer> views;
+	private ViewList views;
 	
 	private HelloController()
 	{
-		views = new ArrayList<>();
+		views = new ViewList();
 	}
 	
 	public static HelloController getInstance()

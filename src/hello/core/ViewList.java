@@ -2,6 +2,15 @@ package hello.core;
 
 import hello.views.IViewRenderer;
 
+/**
+ * Custom list class to hold IViewRenderers. Because if you're going to over complicate 
+ * Hello World, go big or go home!
+ * 
+ * TODO: implement shift(), unshift(), pop(), splice() etc.
+ * 
+ * @author Paul Reitz
+ *
+ */
 public class ViewList
 {
 	private ViewVO head;
