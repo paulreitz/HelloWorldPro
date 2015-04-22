@@ -159,6 +159,12 @@ public class ViewList
 		return -1;
 	}
 	
+	public IViewIterator getIterator()
+	{
+		ViewIterator it = new ViewIterator(this);
+		return it;
+	}
+	
 	class ViewVO
 	{
 		// holds a reference to a view renderer
@@ -219,6 +225,34 @@ public class ViewList
 		public boolean hasChild()
 		{
 			return !(child == null);
+		}
+	}
+	
+	class ViewIterator implements IViewIterator
+	{
+		private ViewList list;
+		private int index;
+		
+		public ViewIterator(ViewList l)
+		{
+			list = l;
+			index = 0;
+		}
+		
+		public boolean hasNext()
+		{
+			return (index < list.size());
+		}
+		
+		public IViewRenderer next()
+		{
+			if (index < list.size())
+			{
+				IViewRenderer next = list.get(index);
+				index++;
+				return next;
+			}
+			return null;
 		}
 	}
 }

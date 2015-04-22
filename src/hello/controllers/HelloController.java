@@ -1,5 +1,6 @@
 package hello.controllers;
 
+import hello.core.IViewIterator;
 import hello.core.ViewList;
 import hello.views.IViewRenderer;
 
@@ -63,10 +64,11 @@ public class HelloController
 	 */
 	public void renderViews()
 	{
-		int count = views.size();
-		for (int i = 0; i < count; ++i)
+		IViewIterator iterator = views.getIterator();
+		while(iterator.hasNext())
 		{
-			views.get(i).render();
+			IViewRenderer renderer = iterator.next();
+			renderer.render();
 		}
 	}
 }
