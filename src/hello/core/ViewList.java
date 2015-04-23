@@ -12,14 +12,14 @@ import hello.views.IViewRenderer;
 public class ViewList
 {
 	// the top level node of the list.
-	private ViewVO head;
+	private Node head;
 	
 	/**
 	 * Constructor
 	 */
 	public ViewList()
 	{
-		head = new ViewVO();
+		head = new Node();
 	}
 	
 	/**
@@ -29,7 +29,7 @@ public class ViewList
 	public int size()
 	{
 		int count = 0;
-		ViewVO tail = head;
+		Node tail = head;
 		while(tail.hasChild())
 		{
 			tail = tail.getChild();
@@ -45,7 +45,7 @@ public class ViewList
 	 */
 	public void shift(IViewRenderer item)
 	{
-		ViewVO inserted = new ViewVO();
+		Node inserted = new Node();
 		inserted.setData(item);
 		inserted.setChild(head.getChild());
 		head.setChild(inserted);
@@ -58,7 +58,7 @@ public class ViewList
 	 */
 	public IViewRenderer unshift()
 	{
-		ViewVO unshifted = head.getChild();
+		Node unshifted = head.getChild();
 		head.setChild(unshifted.getChild());
 		return unshifted.getData();
 	}
@@ -70,8 +70,8 @@ public class ViewList
 	 */
 	public IViewRenderer pop()
 	{
-		ViewVO parent = head;
-		ViewVO tail = head.getChild();
+		Node parent = head;
+		Node tail = head.getChild();
 		while(tail.hasChild())
 		{
 			parent = tail;
@@ -88,12 +88,12 @@ public class ViewList
 	 */
 	public void add(IViewRenderer item)
 	{
-		ViewVO tail = head;
+		Node tail = head;
 		while(tail.hasChild())
 		{
 			tail = tail.getChild();
 		}
-		ViewVO next = new ViewVO();
+		Node next = new Node();
 		next.setData(item);
 		tail.setChild(next);
 	}
@@ -106,7 +106,7 @@ public class ViewList
 	 */
 	public IViewRenderer get(int index)
 	{
-		ViewVO tail = head;
+		Node tail = head;
 		for (int i = 0; i <= index; i++)
 		{
 			if (tail.hasChild())
@@ -125,7 +125,7 @@ public class ViewList
 	 */
 	public boolean contains(IViewRenderer item)
 	{
-		ViewVO tail = head.getChild();
+		Node tail = head.getChild();
 		while (tail != null)
 		{
 			if (tail.getData() == item)
@@ -146,7 +146,7 @@ public class ViewList
 	public int indexOf(IViewRenderer item)
 	{
 		int index = -1;
-		ViewVO tail = head.getChild();
+		Node tail = head.getChild();
 		while(tail != null)
 		{
 			index++;
@@ -165,14 +165,14 @@ public class ViewList
 		return it;
 	}
 	
-	class ViewVO
+	class Node
 	{
 		// holds a reference to a view renderer
 		private IViewRenderer data;
 		// A reference to the next node in the list
-		private ViewVO child;
+		private Node child;
 		
-		public ViewVO()
+		public Node()
 		{
 			data = null;
 			child = null;
@@ -190,11 +190,11 @@ public class ViewList
 		/**
 		 * Sets the view renderer this node references
 		 * 
-		 * @param data
+		 * @param value
 		 */
-		public void setData(IViewRenderer data)
+		public void setData(IViewRenderer value)
 		{
-			this.data = data;
+			data = value;
 		}
 
 		/**
@@ -202,7 +202,7 @@ public class ViewList
 		 * 
 		 * @return
 		 */
-		public ViewVO getChild()
+		public Node getChild()
 		{
 			return child;
 		}
@@ -210,11 +210,11 @@ public class ViewList
 		/**
 		 * Sets the next node in the list
 		 * 
-		 * @param child
+		 * @param value
 		 */
-		public void setChild(ViewVO child)
+		public void setChild(Node value)
 		{
-			this.child = child;
+			child = value;
 		}
 		
 		/**
